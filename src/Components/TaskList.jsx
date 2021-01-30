@@ -7,11 +7,11 @@ import { connect } from 'react-redux'
 import { archiveTask , pinTask } from '../lib/redux'
 
 
-export const PureTaskList = ({loading , tasks , onPinTask , onArchiveTasks}) => {
+export const PureTaskList = ({loading , tasks , onPinTask , onArchiveTask}) => {
 
     const events = {
         onPinTask , 
-        onArchiveTasks
+        onArchiveTask
     }
 
     const LoadingRow = (
@@ -66,8 +66,8 @@ export const PureTaskList = ({loading , tasks , onPinTask , onArchiveTasks}) => 
 PureTaskList.propTypes = {
     loading : PropTypes.bool,
     tasks: PropTypes.arrayOf(Task.propTypes.task).isRequired,
-    onPinTask : PropTypes.func,
-    onArchiveTasks: PropTypes.func
+    onPinTask : PropTypes.func.isRequired,
+    onArchiveTask: PropTypes.func.isRequired
 }
 
 PureTaskList.defaultProps = {
@@ -79,7 +79,7 @@ export default connect(
         tasks: tasks.filter(t => t.state === 'TASK_INBOX' || t.state === 'TASK_PINNED')
     }),
     dispatch => ({
-        onArchiveTasks: id => dispatch(archiveTask(id)),
+        onArchiveTask: id => dispatch(archiveTask(id)),
         onPinTask: id => dispatch(pinTask(id))
     })
 )(PureTaskList)

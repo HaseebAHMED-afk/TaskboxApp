@@ -6,7 +6,7 @@ export const actions = {
     PIN_TASK: 'PIN_TASK'
 }
 
-export const archiveTask = id => ({ type: actions.ARCHIVE_TASK,id})
+export const archiveTask = id => ({ type: actions.ARCHIVE_TASK, id})
 export const pinTask = id => ({type: actions.PIN_TASK , id})
 
 const taskStateReducer = (taskState) =>{
